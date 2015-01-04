@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var pantrySchema = {
+var pantryItemSchema = {
     name: String,
     price: Number
 };
 
-module.exports = mongoose.model('PantryItem', pantrySchema);
+module.exports = mongoose.model('PantryItem', pantryItemSchema);

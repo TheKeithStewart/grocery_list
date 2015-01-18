@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- Angular App and Configuration -->
+    <script src="javascripts/app.groceryList.js"></script>
+    <script src="javascripts/route-config.js"></script>
+    <!-- Controllers -->
+    <script src="javascripts/controllers/mainCtrl.js"></script>
+    <script src="javascripts/controllers/groceryListCtrl.js"></script>
+    <script src="javascripts/controllers/recipesCtrl.js"></script>
+    <script src="javascripts/controllers/pantryCtrl.js"></script>
+    <!-- Services -->
+    <script src="javascripts/services/pantryItems.js"></script>
+</head>
+<body ng-app="groceryList" ng-controller="MainCtrl">
+
+<h1><%= title %></h1>
+
+<nav>
+    <a href="#/home">Home</a>
+    <a href="#/groceryList">Grocery List</a>
+    <a href="#/recipes">Recipes</a>
+    <a href="#/pantry">Pantry</a>
+</nav>
+
+<ui-view></ui-view>
+
+<script type="text/ng-template" id="/home.html">
+    <div>{{ test }}</div>
+</script>
+
+<script type="text/ng-template" id="/groceryList.html">
+    <div>{{ test }}</div>
+</script>
+
+<script type="text/ng-template" id="/recipes.html">
+    <div>{{ test }}</div>
+</script>
+
+<script type="text/ng-template" id="/pantry.html">
+    <div ng-repeat="pantryItem in pantryItems">
+        {{ pantryItem.name }}
+    </div>
+</script>
+
+</body>
+</html>

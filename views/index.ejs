@@ -3,6 +3,7 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.min.css'/>
 
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -13,20 +14,21 @@
     <script src="javascripts/controllers/mainCtrl.js"></script>
     <script src="javascripts/controllers/groceryListCtrl.js"></script>
     <script src="javascripts/controllers/recipesCtrl.js"></script>
+    <script src="javascripts/controllers/recipeCtrl.js"></script>
     <script src="javascripts/controllers/pantryCtrl.js"></script>
     <!-- Services -->
     <script src="javascripts/services/pantryItems.js"></script>
+    <script src="javascripts/services/groceryLists.js"></script>
+    <script src="javascripts/services/groceryListItems.js"></script>
+    <script src="javascripts/services/recipes.js"></script>
 </head>
 <body ng-app="groceryList" ng-controller="MainCtrl">
 
 <h1><%= title %></h1>
 
-<nav>
-    <a href="#/home">Home</a>
-    <a href="#/groceryList">Grocery List</a>
-    <a href="#/recipes">Recipes</a>
-    <a href="#/pantry">Pantry</a>
-</nav>
+<ul class="nav nav-tabs" role="group">
+    <li ng-repeat="navPage in navPages" role="presentation" ng-class="{ active: isActive('{{ navPage.viewLocation }}')}"><a href="{{ navPage.href }}">{{ navPage.name }}</a></li>
+</ul>
 
 <ui-view></ui-view>
 
@@ -39,12 +41,50 @@
 </script>
 
 <script type="text/ng-template" id="/recipes.html">
-    <div>{{ test }}</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="recipe in recipes">
+                <td>
+                    <a href="#/recipe/{{ $index }}">{{ recipe.name }}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </script>
 
 <script type="text/ng-template" id="/pantry.html">
-    <div ng-repeat="pantryItem in pantryItems">
-        {{ pantryItem.name }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Item</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="pantryItem in pantryItems">
+                <td><input type="checkbox"></td>
+                <td>{{ pantryItem.name }}</td>
+                <td>{{ pantryItem.quantity }} {{ pantryItem.unit }}</td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<script type="text/ng-template" id="/recipe.html">
+    <div>
+        <h3>{{ recipe.name }}</h3>
+        <h4>Makes {{ recipe.yield }} servings</h4>
+        <p>Ingredients:</p>
+        <ul>
+            <li ng-repeat="ingredient in recipe.ingredients">{{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.name }}</li>
+        </ul>
+        <p>{{ recipe.instructions }}</p>
     </div>
 </script>
 

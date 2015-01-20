@@ -16,6 +16,15 @@ function groceryListConfig($stateProvider, $urlRouterProvider) {
             url: '/recipes',
             templateUrl: '/recipes.html',
             controller: 'RecipesCtrl'
+        }).state('recipe', {
+            url: '/recipe/{id}',
+            templateUrl: '/recipe.html',
+            controller: 'RecipeCtrl',
+            resolve: {
+                recipe: ['$stateParams', 'recipes', function ($stateParams, recipes) {
+                    return recipes.items[$stateParams.id];
+                }]
+            }
         }).state('pantry', {
             url: '/pantry',
             templateUrl: '/pantry.html',

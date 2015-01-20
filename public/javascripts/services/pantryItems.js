@@ -5,10 +5,22 @@ angular
 function pantryItems() {
     var obj = {
         items: [
-            { name: "test1" },
-            { name: "test2" },
-            { name: "test3" },
-            { name: "test4" }
+            {
+                name: "Rice",
+                quantity: 1,
+                unit: "pkg"
+            },
+            {
+                name: "Item 2",
+                quantity: 0.5,
+                unit: "cups"
+            },
+            {
+                name: "test3"
+            },
+            {
+                name: "test4"
+            }
         ]
     };
 

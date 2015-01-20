@@ -1,7 +1,7 @@
 angular
     .module('groceryList')
-    .controller('RecipesCtrl', ['$scope', recipesCtrl]);
+    .controller('RecipesCtrl', ['$scope', 'recipes', recipesCtrl]);
 
-function recipesCtrl($scope) {
-    $scope.test = "recipes scope";
+function recipesCtrl($scope, recipes) {
+    $scope.recipes = recipes.items;
 }
